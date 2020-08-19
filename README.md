@@ -11,6 +11,8 @@
 
 >Redux, was used because it was requested in the specs of the challenge. I wouldn't normally use it for this kind of scenario.
 
+>Pravatar takes a lot to return the images. This is why I've added a loader until the avar is ready to be displayed. After the first load, the image is chached and displayed immedialty
+
 ## Description
 FaceApp shows a list of rows containing details of mock people. The avatar and the name are shown.  
 When the app loads, it tries to fetch the data from the BE.  
