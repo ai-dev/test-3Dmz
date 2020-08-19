@@ -54,4 +54,4 @@ Scan this code with the Expo client
 <a href="https://expo.io/@iasevoli90/FaceApp">Click here</a> (It's necessary to have the Expo client installed)
 
 
->The app will use an instance of the BE running on a free Dyno on Heroku. The first startup of the Dyno could take some seconds.
+>The app will use an instance of the BE running on a free Dyno on Heroku. The startup of the Dyno could take some seconds.
