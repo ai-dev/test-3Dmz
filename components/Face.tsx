@@ -1,13 +1,13 @@
-import React, { FC } from 'react'
+import React from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
 
-import { Face } from './../types'
+import AppTypes from './../types'
 
 type Props = {
-  data: Face
+  data: AppTypes.Face
 }
 
-const FaceList: FC<Props> = ({ data }) => {
+const Face: React.FC<Props> = ({ data }) => {
   return (
     <View style={styles.container}>
       <Image
@@ -23,7 +23,7 @@ const FaceList: FC<Props> = ({ data }) => {
   )
 }
 
-export default FaceList
+export default Face
 
 const styles = StyleSheet.create({
   container: {

@@ -5,7 +5,7 @@ import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Provider } from 'react-redux'
 
-import FaceList from './components/FaceList'
+import FaceListPage from './pages/FaceListPage'
 import appReducer from './redux'
 
 const store = configureStore({
@@ -17,7 +17,7 @@ export default function App() {
     <Provider store={store}>
       <StatusBar style="auto" />
       <View style={styles.container}>
-        <FaceList />
+        <FaceListPage />
       </View>
     </Provider>
   )

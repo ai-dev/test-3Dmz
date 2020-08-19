@@ -1,11 +1,11 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit'
 
-import { Face } from './../types'
+import AppTypes from './../types'
 
 type InitialState = {
-  data: Face[]
+  data: AppTypes.Face[]
   meta: { fetching: boolean }
-  error: { title: string; message: string } | null
+  error: AppTypes.Error | null
 }
 
 const initialState: InitialState = {
@@ -24,37 +24,38 @@ const faceListState = createSlice({
       state.meta = { ...state.meta, fetching: true }
       state.error = null
     },
-    fetchFaceListSuccess(state, action: PayloadAction<Face[]>) {
+    fetchFaceListSuccess(state, action: PayloadAction<AppTypes.Face[]>) {
       state.data = action.payload
       state.meta = { ...state.meta, fetching: false }
       state.error = null
     },
+    fetchFaceListFail(state, action: PayloadAction<AppTypes.Error>) {
+      state.data = []
+      state.meta = { ...state.meta, fetching: false }
+      state.error = action.payload
+    },
   },
 })
 
-export const { fetchFaceListBegin, fetchFaceListSuccess } = faceListState.actions
+export const { fetchFaceListBegin, fetchFaceListSuccess, fetchFaceListFail } = faceListState.actions
 
 export const fetchFaceList = () => async (dispatch: Dispatch) => {
   dispatch(fetchFaceListBegin())
 
-  dispatch(
-    fetchFaceListSuccess([
-      { id: '1', avatar: 'https://i.pravatar.cc/150?img=1', name: 'Morgan James' },
-      { id: '2', avatar: 'https://i.pravatar.cc/150?img=2', name: 'Esme Coleman' },
-      { id: '3', avatar: 'https://i.pravatar.cc/150?img=3', name: 'Gary Watson' },
-      { id: '4', avatar: 'https://i.pravatar.cc/150?img=14', name: 'Morgan James' },
-      { id: '5', avatar: 'https://i.pravatar.cc/150?img=4', name: 'Nicholas Scott' },
-      { id: '6', avatar: 'https://i.pravatar.cc/150?img=5', name: 'Hugo Gray' },
-      { id: '7', avatar: 'https://i.pravatar.cc/150?img=6', name: 'Carlos Cox' },
-      { id: '8', avatar: 'https://i.pravatar.cc/150?img=7', name: 'Nannie Ortiz' },
-      { id: '9', avatar: 'https://i.pravatar.cc/150?img=8', name: 'Heather Hughes' },
-      { id: '10', avatar: 'https://i.pravatar.cc/150?img=9', name: 'Lillie Jackson' },
-      { id: '11', avatar: 'https://i.pravatar.cc/150?img=10', name: 'Nathaniel Meyer' },
-      { id: '12', avatar: 'https://i.pravatar.cc/150?img=11', name: 'Tilly Hill' },
-      { id: '13', avatar: 'https://i.pravatar.cc/150?img=12', name: 'Richard James' },
-      { id: '14', avatar: 'https://i.pravatar.cc/150?img=13', name: 'Amelie Glasses' },
-    ])
-  )
+  try {
+    // const payload = await fetch('http://192.168.178.36:3000/api/faces')
+    const payload = await fetch('https://test-3dmz-be.herokuapp.com/api/faces')
+
+    const data = await payload.json()
+    dispatch(fetchFaceListSuccess(data))
+  } catch (error) {
+    dispatch(
+      fetchFaceListFail({
+        title: 'Error while fetching the face list',
+        message: error.message,
+      })
+    )
+  }
 }
 
 export default faceListState.reducer

@@ -1,23 +1,18 @@
 import React, { useEffect } from 'react'
 import { StyleSheet, Text, View, FlatList } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
 
-import { RootState } from './../redux'
-import { fetchFaceList } from './../redux/faceList'
+import AppTypes from './../types'
 import Face from './Face'
 
-const FaceList = () => {
-  const dispatch = useDispatch()
-  const faceList = useSelector((state: RootState) => state.faceList)
+type Props = {
+  data: AppTypes.Face[]
+}
 
-  useEffect(() => {
-    dispatch(fetchFaceList())
-  }, [])
-
+const FaceList: React.FC<Props> = ({ data }) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={faceList.data}
+        data={data}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <Face data={item} />}
       />
@@ -28,5 +23,7 @@ const FaceList = () => {
 export default FaceList
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+  },
 })
