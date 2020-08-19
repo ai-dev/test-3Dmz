@@ -51,8 +51,8 @@ export const fetchFaceList = () => async (dispatch: Dispatch) => {
     }
 
     const payload = await fetch(`${apiHost}/api/faces`)
-
     const data = await payload.json()
+
     dispatch(fetchFaceListSuccess(data))
   } catch (error) {
     dispatch(
