@@ -18,6 +18,7 @@ If an error occurs, an error is displayed with some details and a button retry w
 A filter is available on the same page of the list of faces. The filter has been modelled on the behaviour of the Google Contacts App.  
 
 ## Use
+>Node v12.16.2
 
 ### Install expo
 ```bash

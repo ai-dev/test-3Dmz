@@ -63,6 +63,7 @@ const FaceListPage = () => {
         style={styles.filterInput}
         placeholder="Filter faces"
         onChangeText={(text) => setFilter(text)}
+        placeholderTextColor="#4b6584"
       />
       <FaceList data={faceListData} />
     </View>
@@ -102,9 +103,10 @@ const styles = StyleSheet.create({
   },
   errorMessage: {},
   filterInput: {
-    borderColor: 'gray',
+    borderColor: '#4b6584',
     borderWidth: 1,
     padding: 15,
     marginVertical: 5,
-  },
+    borderRadius: 100,
+  }
 })

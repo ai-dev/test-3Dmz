@@ -27,10 +27,11 @@ export default Face
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ffbe76',
-    padding: 15,
+    backgroundColor: '#a5b1c2',
+    padding: 10,
     marginBottom: 5,
     flexDirection: 'row',
+    borderRadius: 100,
   },
   avatar: {
     width: 50,

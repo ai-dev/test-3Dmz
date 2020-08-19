@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import Constants from 'expo-constants'
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
-import { StyleSheet, SafeAreaView, KeyboardAvoidingView, Platform } from 'react-native'
+import { StyleSheet, SafeAreaView, KeyboardAvoidingView, Platform, View } from 'react-native'
 import { Provider } from 'react-redux'
 
 import FaceListPage from './pages/FaceListPage'
@@ -19,8 +19,10 @@ export default function App() {
       <KeyboardAvoidingView
         style={styles.flex1}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-        <SafeAreaView style={[styles.container, styles.flex1]}>
-          <FaceListPage />
+        <SafeAreaView style={[styles.flex1, styles.safeAreaView]}>
+          <View style={[styles.container, styles.flex1]}>
+            <FaceListPage />
+          </View>
         </SafeAreaView>
       </KeyboardAvoidingView>
     </Provider>
@@ -29,9 +31,14 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: Constants.statusBarHeight,
+    marginTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight,
+    paddingHorizontal: 10,
+    backgroundColor: '#778ca3',
   },
   flex1: {
     flex: 1,
+  },
+  safeAreaView: {
+    backgroundColor: '#4b6584',
   },
 })
