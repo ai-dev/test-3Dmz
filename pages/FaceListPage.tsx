@@ -33,6 +33,7 @@ const FaceListPage = () => {
     filter,
   ])
 
+  // Loader
   if (faceListState.meta.fetching) {
     return (
       <View style={[styles.container, styles.loaderContainer]}>
@@ -41,6 +42,7 @@ const FaceListPage = () => {
     )
   }
 
+  // Error box
   if (faceListState.error) {
     return (
       <View style={[styles.container, styles.errorContainer]}>
