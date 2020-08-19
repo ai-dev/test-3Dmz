@@ -2,6 +2,9 @@ import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit'
 
 import AppTypes from './../types'
 
+const localIP = 'LOCAL_IP_HERE'
+const apiHost = __DEV__ ? `http://${localIP}:3000` : 'https://test-3dmz-be.herokuapp.com'
+
 type InitialState = {
   data: AppTypes.Face[]
   meta: { fetching: boolean }
@@ -43,8 +46,11 @@ export const fetchFaceList = () => async (dispatch: Dispatch) => {
   dispatch(fetchFaceListBegin())
 
   try {
-    // const payload = await fetch('http://192.168.178.36:3000/api/faces')
-    const payload = await fetch('https://test-3dmz-be.herokuapp.com/api/faces')
+    if (__DEV__ && localIP === 'LOCAL_IP_HERE') {
+      throw new Error('Set your local ip in /test-3Dmz/redux/faceList.ts')
+    }
+
+    const payload = await fetch(`${apiHost}/api/faces`)
 
     const data = await payload.json()
     dispatch(fetchFaceListSuccess(data))
