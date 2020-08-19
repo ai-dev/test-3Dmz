@@ -1,13 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react'
-import {
-  StyleSheet,
-  View,
-  TextInput,
-  KeyboardAvoidingView,
-  Text,
-  Button,
-  ActivityIndicator,
-} from 'react-native'
+import { StyleSheet, View, TextInput, Text, Button, ActivityIndicator } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 
 import FaceList from '../components/FaceList'
@@ -66,14 +58,14 @@ const FaceListPage = () => {
   }
 
   return (
-    <KeyboardAvoidingView style={styles.container}>
+    <View style={styles.container}>
       <TextInput
         style={styles.filterInput}
         placeholder="Filter faces"
         onChangeText={(text) => setFilter(text)}
       />
       <FaceList data={faceListData} />
-    </KeyboardAvoidingView>
+    </View>
   )
 }
 

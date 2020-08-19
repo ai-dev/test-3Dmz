@@ -2,7 +2,7 @@ import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit'
 
 import AppTypes from './../types'
 
-const localIP = 'LOCAL_IP_HERE'
+const localIP = '192.168.178.36'
 const apiHost = __DEV__ ? `http://${localIP}:3000` : 'https://test-3dmz-be.herokuapp.com'
 
 type InitialState = {
